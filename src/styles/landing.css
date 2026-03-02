@@ -1,0 +1,959 @@
+:root {
+  --bg: #0a0514;
+  --card: #0f0a1f;
+  --muted: #e5e7eb;
+  --accent: #7c3aed;
+  --accent-2: #6d28d9;
+  --glass: rgba(255, 255, 255, 0.03);
+  --purple: #7c3aed;
+  --purple-dark: #6d28d9;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  background: linear-gradient(180deg, var(--bg), #081123);
+  color: #e6eef8;
+}
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #63338f);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 4px 20px rgba(99, 51, 143, 0.8);
+}
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo-box {
+  background: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brand .logo {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.brand-text {
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Main nav link appearance */
+.main-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.social-icons {
+  margin-left: auto;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.social-icons .icon {
+  display: flex; /* WAJIB agar centering berfungsi */
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  height: 45px;
+  width: 45px;
+  text-decoration: none;
+  padding: 0;
+  background: transparent;
+  transition: transform 0.18s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.social-icons .icon i {
+  font-size: 22px;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.social-icons .icon img,
+.social-icons .icon svg,
+.social-icons .icon i {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.social-icons .icon:hover {
+  transform: scale(1.08);
+}
+
+/* Remove pressed box on click/tap, preserve visible focus for keyboard users */
+.social-icons .icon:active,
+.social-icons .icon:focus {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+.social-icons .icon:focus-visible {
+  outline: 3px solid rgba(34, 197, 94, 0.25);
+  outline-offset: 2px;
+}
+
+/* Hamburger focus/active cleanup */
+.hamburger:focus,
+.hamburger:active {
+  outline: none;
+  box-shadow: none;
+}
+.hamburger:focus-visible {
+  outline: 3px solid rgba(34, 197, 94, 0.25);
+  outline-offset: 2px;
+}
+
+/* Ensure header elements don't overlap at smaller widths */
+@media (max-width: 900px) {
+  .main-nav {
+    display: none;
+  }
+  .social-icons {
+    order: 2;
+  }
+  .hamburger {
+    order: 3;
+  }
+}
+
+.main-nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+.main-nav a.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--muted);
+  margin: 4px 0;
+  transition:
+    transform 0.25s,
+    background 0.25s;
+}
+.hamburger span.active {
+  background: #fff;
+}
+
+/* Improve hamburger visibility and stacking on medium/narrow widths */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    margin-left: 0.5rem;
+    z-index: 80;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .hamburger span {
+    background: #ffffff;
+    width: 20px;
+    height: 2px;
+  }
+  .social-icons {
+    order: 2;
+    margin-left: 0.5rem;
+  }
+  .hamburger {
+    order: 3;
+  }
+}
+
+/* Hero */
+.hero {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+  position: relative;
+}
+/* subtle overlay for texture */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+h1 {
+  font-size: 2.2rem;
+  margin: 0 0 0.5rem;
+}
+.lead {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+/* CTA */
+.cta {
+  display: flex;
+  gap: 0.75rem;
+}
+button {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: 0;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+button.alt {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+}
+button.alt:hover {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: white;
+}
+
+/* Sections */
+.section {
+  padding: 4rem 0;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+.services-grid li {
+  background: var(--glass);
+  padding: 1rem;
+  border-radius: 10px;
+  color: #dbeafe;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(34, 197, 94, 0.1);
+}
+
+.services-grid li:hover {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+}
+
+.contact form {
+  max-width: 640px;
+}
+.row {
+  display: flex;
+  gap: 0.5rem;
+}
+.row input {
+  flex: 1;
+}
+input,
+textarea {
+  width: 100%;
+  padding: 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+  color: inherit;
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Form styling improvements */
+form {
+  background: rgba(15, 23, 36, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: none;
+}
+
+form input,
+form textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.75rem;
+  border-radius: 6px;
+  color: #000000;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+form button {
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+form button:hover {
+  transform: none;
+  opacity: 0.9;
+}
+
+form button.alt:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Contact Form - Clean & Modern Style */
+.contact-form-wrapper form {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.1);
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.contact-form-wrapper form input,
+.contact-form-wrapper form textarea {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form-wrapper form input:focus,
+.contact-form-wrapper form textarea:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
+  outline: none;
+}
+
+/* Register Form - Modern & Flexible */
+.register-form-wrapper form {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.1);
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.register-form-wrapper form input,
+.register-form-wrapper form textarea,
+.register-form-wrapper form select {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  color: #000000;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.register-form-wrapper form input:focus,
+.register-form-wrapper form textarea:focus,
+.register-form-wrapper form select:focus {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.register-form-wrapper form button {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: none;
+}
+
+.register-form-wrapper form button:hover {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity: 0.1;
+}
+
+.register-form-wrapper form button.alt {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e6eef8;
+}
+
+.register-form-wrapper form button.alt:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+/* Payment Status */
+.payment-status-wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.status-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.status-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid rgba(99, 51, 143, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.status-form button {
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.status-result {
+  margin-top: 2rem;
+}
+
+.status-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border: 2px solid;
+}
+
+.status-card.paid {
+  border-color: #7c3aed;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.status-card.unpaid {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.payment-reminder {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.pay-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Tab Navigation */
+.tab-nav {
+  display: flex;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.tab-nav button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  color: #000000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.tab-nav button.active {
+  background: rgba(34, 197, 94, 0.9);
+  color: white;
+}
+
+.tab-nav button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Payment Section */
+.payment-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(34, 197, 94, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* Status Section */
+.status-section {
+  margin-top: 2rem;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.payment-method input[type='radio'] {
+  margin: 0;
+}
+
+/* Footer */
+.footer {
+  padding: 1.2rem 0;
+  margin-top: auto;
+  border-top: 1px solid;
+  color: var(--muted);
+  background-color: #63338f;
+}
+
+/* Responsive adjustments for desktop widths */
+:root {
+  --container-max: 1200px;
+}
+
+.container {
+  max-width: var(--container-max);
+}
+
+/* Fluid type for headings */
+h1 {
+  font-size: clamp(1.6rem, 2.2vw + 1rem, 3rem);
+}
+.lead {
+  font-size: clamp(0.9rem, 1vw + 0.2rem, 1.125rem);
+}
+
+/* Make rows wrap on narrower viewports */
+.row {
+  flex-wrap: wrap;
+}
+.row > * {
+  min-width: 220px;
+}
+
+/* Navigation responsiveness */
+.main-nav {
+  position: relative;
+  left: auto;
+  transform: none;
+}
+.hamburger {
+  display: none;
+}
+
+/* Forms and cards scale nicely */
+.contact form,
+.register-form-wrapper form,
+.contact-form-wrapper form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Services grid spacing tweak for small desktop widths */
+.services-grid {
+  gap: 1rem;
+  grid-auto-rows: minmax(80px, auto);
+}
+
+/* Medium desktops */
+@media (max-width: 1200px) {
+  :root {
+    --container-max: 1000px;
+  }
+  .site-header {
+    padding: 0.75rem 1rem;
+  }
+  .brand .logo {
+    width: 32px;
+    height: 32px;
+  }
+  .main-nav a {
+    padding: 0.5rem 0.85rem;
+  }
+}
+
+/* Narrow desktops / large tablets */
+@media (max-width: 1024px) {
+  :root {
+    --container-max: 880px;
+  }
+  .hero {
+    padding: 4.5rem 0;
+  }
+  .site-header {
+    border-radius: 0;
+  }
+  .main-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Compact desktop / small laptop */
+@media (max-width: 900px) {
+  :root {
+    --container-max: 760px;
+  }
+  .main-nav {
+    position: static;
+    transform: none;
+    display: none;
+  }
+  .hamburger {
+    display: inline-flex;
+  }
+  .social-icons {
+    margin-left: 0;
+  }
+  .hero {
+    padding: 3.5rem 0;
+  }
+  .cta {
+    flex-wrap: wrap;
+  }
+}
+
+/* Small screens (still desktop-oriented) */
+@media (max-width: 768px) {
+  :root {
+    --container-max: 640px;
+  }
+  .brand-text {
+    font-size: 0.95rem;
+  }
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  .status-form {
+    flex-direction: column;
+  }
+  .status-form button {
+    width: 100%;
+  }
+}
+
+/* Very small / narrow windows */
+@media (max-width: 560px) {
+  :root {
+    --container-max: 520px;
+  }
+  .brand .logo {
+    width: 28px;
+    height: 28px;
+  }
+  .lead {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Utility: make tables/forms fit */
+input,
+textarea,
+select {
+  max-width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(2, 6, 23, 0.7);
+    padding: 0.75rem;
+    transform-origin: top;
+    display: none;
+  }
+  .site-header.open .main-nav {
+    display: flex;
+  }
+  .main-nav a {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+  }
+  .row {
+    flex-direction: column;
+  }
+}
+
+/* Comprehensive responsive tweaks */
+@media (max-width: 1024px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .services-content {
+    grid-template-columns: 1fr 1fr;
+  }
+  .service-card {
+    padding: 1.25rem;
+  }
+  .site-header {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .services-content {
+    grid-template-columns: 1fr;
+  }
+  .about-stats {
+    flex-direction: row;
+    gap: 0.75rem;
+    overflow-x: auto;
+  }
+  .about-stats .stat {
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Make header fixed stacking and full-width menu overlay */
+  .site-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+  .site-header.open {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    background: linear-gradient(180deg, rgba(6, 8, 20, 0.96), rgba(6, 8, 20, 0.95));
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: stretch;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  .site-header.open .main-nav {
+    display: flex;
+  }
+  .main-nav a {
+    color: #fff;
+    padding: 0.9rem 1.25rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+  .main-nav a:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Make brand compact */
+  .brand-text {
+    display: none;
+  }
+  .logo-box {
+    padding: 4px;
+  }
+
+  /* Hero and spacing adjustments */
+  .hero {
+    padding: 3.25rem 0 2.25rem;
+  }
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  /* Forms and inputs full width and larger touch targets */
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 1rem;
+  }
+  .contact-form,
+  .contact-info,
+  .register-cta {
+    width: 100%;
+  }
+  .cta-button,
+  .service-button,
+  .pay-btn {
+    width: 100%;
+    display: block;
+  }
+}
+
+@media (max-width: 560px) {
+  h1 {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
+  .section-header h2 {
+    font-size: 1.75rem;
+  }
+  .services-content {
+    gap: 1rem;
+  }
+  .service-icon {
+    font-size: 2.25rem;
+  }
+  .about-text p {
+    font-size: 1rem;
+  }
+  .footer .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --container-max: 420px;
+  }
+  .brand .logo {
+    width: 28px;
+    height: 28px;
+  }
+  .logo-box {
+    padding: 3px;
+  }
+  .social-icons {
+    display: none;
+  }
+  .section {
+    padding: 2rem 0;
+  }
+  .content-block {
+    border-radius: 12px;
+    padding: 2rem 0;
+  }
+}
+
+/* Make images and media fluid */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accessibility: focus states for keyboard users */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid rgba(34, 197, 94, 0.25);
+  outline-offset: 2px;
+}
+
+/* Ensure grids and forms do not overflow */
+.container,
+.content-block {
+  box-sizing: border-box;
+}
