@@ -2,7 +2,7 @@
   <div class="register-page-container">
     <!-- Header Banner -->
     <div class="header-banner">
-      <h1 class="banner-text">TRAIN LIKE <span>A PRO.</span></h1>
+      <h1 class="banner-text">BERLATIH LAYAKNYA <span>SEORANG PRO.</span></h1>
     </div>
 
     <div class="form-outer-wrapper">
@@ -11,17 +11,17 @@
         <div class="registration-layout">
           <!-- Main Form -->
           <div class="form-content">
-            <h2 class="form-title">ACADEMY REGISTRATION:</h2>
+            <h2 class="form-title">PENDAFTARAN AKADEMI:</h2>
 
             <form @submit.prevent="submitRegistration">
               <!-- Full Player Name -->
               <div class="field-row">
                 <div class="form-field full-width">
-                  <label>Full Player Name: <span class="required">*</span></label>
+                  <label>Nama Lengkap Pemain: <span class="required">*</span></label>
                   <input
                     v-model="form.fullName"
                     type="text"
-                    placeholder="First name, family name"
+                    placeholder="Nama depan, nama keluarga"
                     required
                   />
                 </div>
@@ -30,18 +30,23 @@
               <!-- Short Name, Gender, DOB -->
               <div class="field-row three-col">
                 <div class="form-field">
-                  <label>Short Name: <span class="required">*</span></label>
-                  <input v-model="form.shortName" type="text" placeholder="Nickname" required />
+                  <label>Nama Panggilan: <span class="required">*</span></label>
+                  <input
+                    v-model="form.shortName"
+                    type="text"
+                    placeholder="Nama Panggilan"
+                    required
+                  />
                 </div>
                 <div class="form-field">
-                  <label>Gender <span class="required">*</span></label>
+                  <label>Jenis Kelamin <span class="required">*</span></label>
                   <select v-model="form.gender" required>
-                    <option value="" disabled selected>Select Gender</option>
+                    <option value="" disabled selected>Pilih Jenis Kelamin</option>
                     <option v-for="opt in genderOptions" :key="opt" :value="opt">{{ opt }}</option>
                   </select>
                 </div>
                 <div class="form-field">
-                  <label>Date Of Birth <span class="required">*</span></label>
+                  <label>Tanggal Lahir <span class="required">*</span></label>
                   <input v-model="form.birthDate" type="date" required />
                 </div>
               </div>
@@ -49,9 +54,9 @@
               <!-- Jersey Size -->
               <div class="field-row">
                 <div class="form-field full-width">
-                  <label>Jersey size (see size chart) <span class="required">*</span></label>
+                  <label>Ukuran Jersey (lihat bagan ukuran) <span class="required">*</span></label>
                   <select v-model="form.jerseySize" required>
-                    <option value="" disabled selected>Select Size</option>
+                    <option value="" disabled selected>Pilih Ukuran</option>
                     <option v-for="size in jerseySizes" :key="size" :value="size">
                       {{ size }}
                     </option>
@@ -62,7 +67,7 @@
               <!-- Address -->
               <div class="field-row">
                 <div class="form-field full-width">
-                  <label>Adress: <span class="required">*</span></label>
+                  <label>Alamat: <span class="required">*</span></label>
                   <textarea v-model="form.address" rows="3" required></textarea>
                 </div>
               </div>
@@ -70,11 +75,11 @@
               <!-- Contact Number (WA), School -->
               <div class="field-row two-col">
                 <div class="form-field">
-                  <label>Contact Number (WA): <span class="required">*</span></label>
+                  <label>Nomor Kontak (WA): <span class="required">*</span></label>
                   <input v-model="form.phoneWA" type="tel" placeholder="(123) 456-7890" required />
                 </div>
                 <div class="form-field">
-                  <label>School: <span class="required">*</span></label>
+                  <label>Sekolah: <span class="required">*</span></label>
                   <input v-model="form.school" type="text" required />
                 </div>
               </div>
@@ -90,11 +95,11 @@
               <!-- Mother's Info -->
               <div class="field-row two-col">
                 <div class="form-field">
-                  <label>Name of Mother</label>
+                  <label>Nama Ibu</label>
                   <input v-model="form.motherName" type="text" />
                 </div>
                 <div class="form-field">
-                  <label>Phone Number Mother:</label>
+                  <label>Nomor Telepon Ibu:</label>
                   <input v-model="form.motherPhone" type="tel" placeholder="(123) 456-7890" />
                 </div>
               </div>
@@ -102,11 +107,11 @@
               <!-- Father's Info -->
               <div class="field-row two-col">
                 <div class="form-field">
-                  <label>Name Of Father</label>
+                  <label>Nama Ayah</label>
                   <input v-model="form.fatherName" type="text" />
                 </div>
                 <div class="form-field">
-                  <label>Phone Number Father:</label>
+                  <label>Nomor Telepon Ayah:</label>
                   <input v-model="form.fatherPhone" type="tel" placeholder="(123) 456-7890" />
                 </div>
               </div>
@@ -115,8 +120,7 @@
               <div class="field-row">
                 <div class="form-field full-width">
                   <label
-                    >Any allergies, medications or other medical conditions we should be aware
-                    of:</label
+                    >Alergi, obat-obatan, atau kondisi medis lainnya yang perlu kami ketahui:</label
                   >
                   <textarea v-model="form.allergies" rows="2"></textarea>
                 </div>
@@ -126,8 +130,7 @@
               <div class="field-row">
                 <div class="form-field full-width">
                   <label
-                    >Does the participant have medical Insurance?
-                    <span class="required">*</span></label
+                    >Apakah peserta memiliki asuransi medis? <span class="required">*</span></label
                   >
                   <select v-model="form.hasInsurance" required>
                     <option v-for="opt in insuranceOptions" :key="opt" :value="opt">
@@ -140,12 +143,19 @@
               <!-- Program -->
               <div class="field-row">
                 <div class="form-field full-width">
-                  <label>Program (sessions and payments): <span class="required">*</span></label>
+                  <label>Program (sesi dan pembayaran): <span class="required">*</span></label>
                   <select v-model="form.program" required>
                     <option v-for="prog in programs" :key="prog.id" :value="prog.id">
                       {{ prog.label }}
                     </option>
                   </select>
+                  <p v-if="selectedProgram" class="fee-info">
+                    Total Bayar: IDR {{ (1000000 + selectedProgram.price).toLocaleString('id-ID') }}
+                    <small
+                      >(Pendaftaran 1jt + Program
+                      {{ selectedProgram.price.toLocaleString('id-ID') }})</small
+                    >
+                  </p>
                 </div>
               </div>
 
@@ -153,49 +163,49 @@
               <div class="acknowledgments">
                 <div class="ack-item">
                   <label>
-                    I acknowledge to transfer the signup fee (IDR 1.000.000) and the program fee to
-                    the German Football Indonesia account: CIMB NIAGA 7071 7077 8200 and send the
-                    transfer slip via WA to +62 8111 8898 05. <span class="required">*</span>
+                    Saya setuju untuk mentransfer biaya pendaftaran (IDR 1.000.000) dan biaya
+                    program ke rekening Persita Akademi: CIMB NIAGA 7071 7077 8200 dan mengirimkan
+                    bukti transfer via WA ke +62 8111 8898 05. <span class="required">*</span>
                   </label>
                   <input v-model="form.acknowledgments.signupFee" type="checkbox" required />
                 </div>
 
                 <div class="ack-item">
                   <label>
-                    I agree to wear the Borussia M'Gladbach Academy Indonesia (BAI) outfit at all
-                    training sessions and matches. Football socks and other non-Borussia items
-                    should be in neutral colors (ideally black).
+                    Saya setuju untuk mengenakan seragam Persita Akademi pada setiap sesi latihan
+                    dan pertandingan. Kaos kaki sepak bola dan perlengkapan lainnya yang bukan dari
+                    Persita harus berwarna netral (idealnya hitam). <span class="required">*</span>
                   </label>
+                  <input v-model="form.acknowledgments.uniform" type="checkbox" required />
                 </div>
 
                 <div class="ack-item">
                   <label>
-                    Please do not display Logos and Merchandise of other clubs and leagues beside
-                    Borussia Mönchengladbach and the Bundesliga. <span class="required">*</span>
+                    Harap tidak menampilkan Logo dan Merchandise klub atau liga lain selain Persita
+                    Akademi dan Liga Indonesia. <span class="required">*</span>
                   </label>
                   <input v-model="form.acknowledgments.noLogos" type="checkbox" required />
                 </div>
 
                 <div class="ack-item">
                   <label>
-                    I acknowledge that participation in the football academy involves physical
-                    activities, and I assume all risks and hazards incidental to such participation.
-                    I hereby waive, release, and forever discharge the football academy, its
-                    directors, officers, employees, agents, and volunteers from any and all
-                    liability, claims, demands, or causes of action whatsoever arising out of any
-                    damage, loss, injury, or fatality to me or my child, while participating in the
-                    events. <span class="required">*</span>
+                    Saya mengakui bahwa partisipasi dalam akademi sepak bola melibatkan aktivitas
+                    fisik, dan saya menanggung semua risiko dan bahaya yang mungkin terjadi. Dengan
+                    ini saya melepaskan akademi sepak bola, direktur, petugas, karyawan, agen, dan
+                    sukarelawan dari segala tanggung jawab, klaim, tuntutan, atau tindakan apa pun
+                    yang timbul dari kerusakan, kerugian, cedera, atau kematian bagi saya atau anak
+                    saya selama berpartisipasi dalam acara tersebut. <span class="required">*</span>
                   </label>
                   <input v-model="form.acknowledgments.liability" type="checkbox" required />
                 </div>
 
                 <div class="ack-item">
                   <label>
-                    I acknowledge that images and videos taken may be used for promotion; including
-                    but not limited to press release; publicity materials including newsletters,
-                    magazines, brochures, websites and social media. Images and videos will not be
-                    accompanied by names or other personal details that could identify individual
-                    children or young people. <span class="required">*</span>
+                    Saya mengakui bahwa foto dan video yang diambil dapat digunakan untuk promosi;
+                    termasuk namun tidak terbatas pada rilis berita; materi publisitas termasuk
+                    buletin, majalah, brosur, situs web, dan media sosial. Foto dan video tidak akan
+                    disertai dengan nama atau detail pribadi lainnya yang dapat mengidentifikasi
+                    anak-anak atau orang muda tersebut. <span class="required">*</span>
                   </label>
                   <input v-model="form.acknowledgments.media" type="checkbox" required />
                 </div>
@@ -203,13 +213,13 @@
 
               <div class="field-row">
                 <div class="form-field full-width">
-                  <label>Notes and comments:</label>
+                  <label>Catatan dan komentar:</label>
                   <textarea v-model="form.notes" rows="2"></textarea>
                 </div>
               </div>
 
               <div class="submit-area">
-                <button type="submit" class="register-submit-btn">PROCEED TO REGISTRATION</button>
+                <button type="submit" class="register-submit-btn">LANJUTKAN KE PENDAFTARAN</button>
               </div>
             </form>
           </div>
@@ -248,15 +258,15 @@
     <!-- Modals & Success messages -->
     <div v-if="registrationSuccess" class="success-overlay">
       <div class="success-card">
-        <h3>Registration Successful!</h3>
-        <p>Thank you, {{ form.fullName }}. Your registration has been received.</p>
-        <button class="pay-btn" @click="() => (showPayment = true)">Proceed to Payment</button>
+        <h3>Pendaftaran Berhasil!</h3>
+        <p>Terima kasih, {{ form.fullName }}. Pendaftaran Anda telah kami terima.</p>
+        <button class="pay-btn" @click="() => (showPayment = true)">Lanjutkan ke Pembayaran</button>
       </div>
     </div>
 
     <PaymentModal
       v-if="showPayment"
-      :amount="paymentConfig.registrationFee"
+      :amount="totalAmount"
       :methods="paymentMethods"
       @confirm="onModalConfirm"
       @close="() => (showPayment = false)"
@@ -265,8 +275,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import { paymentConfig } from '../config/midtrans'
+import { reactive, ref, computed } from 'vue'
 
 defineOptions({
   name: 'AcademyRegistration',
@@ -326,27 +335,49 @@ const form = reactive<RegistrationForm>({
   },
 })
 
+const selectedProgram = computed(() => {
+  return programs.find((p) => p.id === form.program)
+})
+
+const totalAmount = computed(() => {
+  const baseRegistration = 1000000
+  return baseRegistration + (selectedProgram.value?.price || 0)
+})
+
 const showPayment = ref(false)
 const registrationSuccess = ref(false)
 const registrationResult = ref(null)
 const selectedPaymentMethod = ref('')
 
-const genderOptions = ['Male', 'Female']
+const genderOptions = ['Laki-laki', 'Perempuan']
 const jerseySizes = [
   'Kids S',
   'Kids M',
   'Kids L',
   'Kids XL',
-  'Adult S',
-  'Adult M',
-  'Adult L',
-  'Adult XL',
-  'Adult XXL',
+  'Dewasa S',
+  'Dewasa M',
+  'Dewasa L',
+  'Dewasa XL',
+  'Dewasa XXL',
 ]
-const insuranceOptions = ['Yes', 'No']
+const insuranceOptions = ['Ya', 'Tidak']
 const programs = [
-  { id: '1_session', label: '1 session per week IDR 800.000 for 1 month in advance' },
-  { id: '2_sessions', label: '2 sessions per week IDR 1.500.000 for 1 month in advance' },
+  {
+    id: 'basic',
+    label: 'Paket Basic: 1 sesi per minggu - IDR 800.000 / bulan',
+    price: 800000,
+  },
+  {
+    id: 'premium',
+    label: 'Paket Premium: 2 sesi per minggu - IDR 1.500.000 / bulan',
+    price: 1500000,
+  },
+  {
+    id: 'elite',
+    label: 'Paket Elite: Latihan Harian - IDR 2.000.000 / bulan',
+    price: 2000000,
+  },
 ]
 
 import PaymentModal from '../components/PaymentModal.vue'
@@ -413,7 +444,7 @@ async function processPayment() {
     const transactionDetails = {
       transaction_details: {
         order_id: `REG-${Date.now()}`,
-        gross_amount: paymentConfig.registrationFee,
+        gross_amount: totalAmount.value,
       },
       customer_details: {
         first_name: form.fullName.split(' ')[0],
@@ -423,10 +454,16 @@ async function processPayment() {
       },
       item_details: [
         {
-          id: 'REGISTRATION_FEE',
-          price: paymentConfig.registrationFee,
+          id: 'REGISTRATION_SIGNUP',
+          price: 1000000,
           quantity: 1,
-          name: 'Biaya Pendaftaran Akademi Sepak Bola',
+          name: 'Biaya Pendaftaran (Signup Fee)',
+        },
+        {
+          id: form.program,
+          price: selectedProgram.value?.price || 0,
+          quantity: 1,
+          name: `Biaya Program: ${selectedProgram.value?.label.split(' IDR')[0]}`,
         },
       ],
       enabled_payments: selectedPaymentMethod.value ? [selectedPaymentMethod.value] : undefined,
@@ -691,6 +728,23 @@ function reset() {
 
 .form-field input::placeholder {
   color: #94a3b8;
+}
+
+.fee-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(124, 58, 237, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.fee-info small {
+  display: block;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-top: 0.25rem;
 }
 
 /* Acknowledgments Section */

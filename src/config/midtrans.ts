@@ -11,7 +11,7 @@ export const midtransConfig = {
 
 // Payment configuration
 export const paymentConfig = {
-  registrationFee: 500000, // Rp 500,000
+  registrationFee: 1000000, // Rp 1.000.000
   monthlyFee: 500000, // Rp 500,000
   currency: 'IDR',
 }

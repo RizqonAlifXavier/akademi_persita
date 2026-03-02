@@ -169,6 +169,59 @@
       </div>
     </section>
 
+    <!-- Schedule Section -->
+    <section id="schedule" class="section content-block">
+      <div class="container">
+        <div class="section-header">
+          <h2>Jadwal Latihan</h2>
+          <div class="section-divider"></div>
+          <p class="section-description">
+            Berikut adalah jadwal rutin latihan setiap minggunya di Persita Akademi
+          </p>
+        </div>
+        <div class="schedule-container">
+          <div class="schedule-table-wrapper">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Grup / Kategori</th>
+                  <th>Hari</th>
+                  <th>Waktu (WIB)</th>
+                  <th>Lokasi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Grup A (U8 - U12)</strong></td>
+                  <td>Senin & Kamis</td>
+                  <td>16:00 - 18:00</td>
+                  <td>Main Field A</td>
+                </tr>
+                <tr>
+                  <td><strong>Grup B (U13 - U17)</strong></td>
+                  <td>Selasa & Jumat</td>
+                  <td>16:00 - 18:00</td>
+                  <td>Main Field B</td>
+                </tr>
+                <tr>
+                  <td><strong>Grup C (Khusus Kiper)</strong></td>
+                  <td>Rabu & Sabtu</td>
+                  <td>16:00 - 18:00</td>
+                  <td>Training Area</td>
+                </tr>
+                <tr>
+                  <td><strong>Grup D (Umum/Hobi)</strong></td>
+                  <td>Minggu</td>
+                  <td>08:00 - 10:00</td>
+                  <td>Main Field A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Pricing Section -->
     <section id="pricing" class="section content-block">
       <div class="container">
@@ -183,33 +236,33 @@
         <div class="pricing-content">
           <div class="pricing-card">
             <h3>Paket Basic</h3>
-            <div class="price">Rp 500.000<span>/bulan</span></div>
+            <div class="price">Rp 800.000<span>/bulan</span></div>
             <ul>
-              <li>✓ Latihan 3x seminggu</li>
+              <li>✓ Latihan 1x seminggu</li>
               <li>✓ Program pelatihan dasar</li>
               <li>✓ Jersey akademi</li>
               <li>✓ Panduan nutrisi</li>
               <li>✓ Sertifikat kelulusan</li>
             </ul>
-            <button class="pricing-btn">Pilih Paket</button>
+            <RouterLink to="/register" class="pricing-btn">Pilih Paket</RouterLink>
           </div>
           <div class="pricing-card featured">
             <div class="badge">Paling Populer</div>
             <h3>Paket Premium</h3>
-            <div class="price">Rp 750.000<span>/bulan</span></div>
+            <div class="price">Rp 1.500.000<span>/bulan</span></div>
             <ul>
-              <li>✓ Latihan 5x seminggu</li>
+              <li>✓ Latihan 2x seminggu</li>
               <li>✓ Semua program pelatihan</li>
               <li>✓ Fisioterapi rutin</li>
               <li>✓ Suplemen nutrisi</li>
               <li>✓ Private coaching</li>
               <li>✓ Analisis performa</li>
             </ul>
-            <button class="pricing-btn">Pilih Paket</button>
+            <RouterLink to="/register" class="pricing-btn">Pilih Paket</RouterLink>
           </div>
           <div class="pricing-card">
             <h3>Paket Elite</h3>
-            <div class="price">Rp 1.000.000<span>/bulan</span></div>
+            <div class="price">Rp 2.000.000<span>/bulan</span></div>
             <ul>
               <li>✓ Latihan harian intensif</li>
               <li>✓ Program pelatihan lengkap</li>
@@ -218,7 +271,7 @@
               <li>✓ Prioritas turnamen</li>
               <li>✓ Garansi perkembangan</li>
             </ul>
-            <button class="pricing-btn">Pilih Paket</button>
+            <RouterLink to="/register" class="pricing-btn">Pilih Paket</RouterLink>
           </div>
         </div>
       </div>
@@ -772,6 +825,8 @@ defineOptions({
   transition: all 0.3s ease;
   width: 100%;
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  text-decoration: none;
+  display: inline-block;
 }
 
 .pricing-btn:hover {
@@ -780,6 +835,56 @@ defineOptions({
 }
 
 /* Responsive adjustments */
+/* Schedule Section Styles */
+.schedule-container {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.schedule-table-wrapper {
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  min-width: 600px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.schedule-table th {
+  background: rgba(124, 58, 237, 0.2);
+  color: #a855f7;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.schedule-table tr:last-child td {
+  border-bottom: none;
+}
+
+.schedule-table td strong {
+  color: #a855f7;
+}
+
+.schedule-table tr:hover td {
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.3s ease;
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.5rem;

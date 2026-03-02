@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingView from '../AcademyLanding.vue'
-import AboutView from '../views/About.vue'
-import ServicesView from '../views/Services.vue'
-import ContactView from '../views/Contact.vue'
+import AboutView from '../views/AcademyAbout.vue'
+import ServicesView from '../views/AcademyServices.vue'
+import ContactView from '../views/AcademyContact.vue'
 import RegisterView from '../views/Register.vue'
 
 const router = createRouter({
